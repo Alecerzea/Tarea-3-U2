@@ -41,7 +41,7 @@ public class StudentController {
                 .orElseThrow(() -> new StudentNotFoundException("Student not found"));
         existingStudent.setUser(student.getUser());
         existingStudent.setAcademicHistory(student.getAcademicHistory());
-        return saveStudent(existingStudent);
+        return ResponseEntity.ok(studentService.saveStudent(existingStudent));
     }
 
     @DeleteMapping("/{id}")
@@ -64,14 +64,12 @@ public class StudentController {
 
 // Custom exception classes
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
 class StudentNotFoundException extends ResponseStatusException {
     public StudentNotFoundException(String message) {
         super(HttpStatus.NOT_FOUND, message);
     }
 }
 
-@ResponseStatus(HttpStatus.BAD_REQUEST)
 class InvalidStudentDataException extends ResponseStatusException {
     public InvalidStudentDataException(String message) {
         super(HttpStatus.BAD_REQUEST, message);
