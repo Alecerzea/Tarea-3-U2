@@ -1,8 +1,9 @@
-// src/main/java/com/escuela/educacion/model/Student.java
-
 package com.escuela.educacion.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Student {
@@ -10,13 +11,11 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private String name;
+    private String lastName;
+    private String email;
 
-    private String academicHistory;
-
-    // Getters and Setters
+    // getters and setters
     public Long getId() {
         return id;
     }
@@ -25,19 +24,27 @@ public class Student {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public String getName() {
+        return name;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAcademicHistory() {
-        return academicHistory;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setAcademicHistory(String academicHistory) {
-        this.academicHistory = academicHistory;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
