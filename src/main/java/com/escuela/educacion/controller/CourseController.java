@@ -31,7 +31,7 @@ public class CourseController {
     @PutMapping("/{id}")
     public Course updateCourse(@PathVariable Long id, @RequestBody Course course) {
         Course existingCourse = courseService.getCourseById(id);
-        if (existingCourse != null) {
+        if (existingCourse!= null) {
             existingCourse.setName(course.getName());
             existingCourse.setLevel(course.getLevel());
             return courseService.saveCourse(existingCourse);
@@ -44,4 +44,3 @@ public class CourseController {
         courseService.deleteCourse(id);
     }
 }
-
